@@ -21,15 +21,15 @@ all: $(PROG_NAME)
 
 
 $(PROG_NAME): $(OBJ_INC) $(OBJ_SRC)
-	$(CC) $(CFLAGS) $^ -o $(PROG_NAME)
+	$(CC) $^ -o $(PROG_NAME) $(CFLAGS)
 
 $(OBJ_INC): $(OBJ_DIR)/%.o: $(INC_DIR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 $(OBJ_SRC): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 
 clean:
-	rm -f $(OBJ_DIR)/*.o
+	rm -f $(OBJ_DIR)/*.o $(PROG_NAME)
 
