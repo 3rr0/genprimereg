@@ -1,36 +1,41 @@
-#include    "..\inc\primereg.h"
 #include	<primereg.h>
 #include    <stdlib.h>
-#include	<memory.h>
+#include    <stdio.h>
+#include    <string.h>
+#include    <time.h>
+
 
 int main( int argc, char* argv[] ) {
-	//Variables
-	f_t* Data;
+	// Variables
+	f_t*      Data;
 	uint32_t* Primes;
-	uint16_t Count = 0;
+	uint16_t  Count = 0;
 
-	//Initialize the Data and the Primes
-	Data = (f_t*)malloc(sizeof(f_t) * N_FUNCTIONS);
+	// Initialize the Data and the Primes
+    Data   = (f_t*)malloc(sizeof(f_t) * N_FUNCTIONS);
 	memset(Data, 0, sizeof(f_t) * N_FUNCTIONS);
 	Primes = (uint32_t*)malloc(sizeof(uint32_t) * N_PRIMES);
 	memset(Primes, 0, sizeof(uint32_t) * N_PRIMES);
 
-	//Recieve the Primenumbers
-	findp(Primes);
+	// Recieve the Primenumbers
+	if( sievep(Primes, N_PRIMES, SIEVE_LIMIT) != N_PRIMES ) {
+        printf("Found less primes than wanted. Aborting!\n");
+        return 1;        
+    }
 
-	//Seed the randomizer
+	// Seed the randomizer
 	srand(time(NULL));
 
-	//Initialize the functions
+	// Initialize the functions
 	for (uint16_t i = 0; i < N_FUNCTIONS; i++) {
 		initf(&Data[i]);
 	}
 
-	//Main Loop
+	// Main Loop
 	do {
 		evolve(Data, Primes);
 		
-		//Print data
+		// Print data
 		if (++Count >= N_PRINTDATA) {
 			PrintData(Data);
 			Count = 0;

@@ -1,14 +1,20 @@
-#include    "..\inc\primereg.h"
-#include    <primegen.h>
-#include    <math.h>
-#include	<time.h>
+#include    <primereg.h>
 #include    <stdlib.h>
+#include    <string.h>
 #include	<stdio.h>
-#include	<memory.h>
+#include	<time.h>
+#include    <math.h>
 
-void findp(uint32_t* p) {
-	//p is an array of N_PRIMES elements
+
+
+void printArr( arr_t arr ) {
+    for( uint32_t i = 0;  i < arr.len;  i++ ) {
+        printf("%" PRIu8 ", ", arr.dat[i]);
+    }
+    
+    printf("\n");
 }
+
 void initf(f_t* f) {
 	//Variables
 	uint8_t Buf[256];
@@ -224,6 +230,7 @@ void initf(f_t* f) {
 	memcpy(f->term.dat, Buf, Len);
 	f->term.len = Len;
 }
+
 void evolve(f_t* fs, uint32_t* p) {
 	//Calculate the fitness of the elements
 	for (uint16_t i = 0; i < N_FUNCTIONS; i++) {
@@ -261,6 +268,7 @@ void evolve(f_t* fs, uint32_t* p) {
 		repopulate(&fs[PA], &fs[PB], &fs[i]);
 	}
 }
+
 void calcFitness(f_t* f, uint32_t* p) {
 	//Variables
 	double val = 0.0;
@@ -279,6 +287,7 @@ void calcFitness(f_t* f, uint32_t* p) {
 		}
 	}
 }
+
 bool calcfval(f_t f, uint32_t x, double* val) {
 	//Variables
 	double SolA = 0.0;
@@ -476,16 +485,18 @@ bool calcfval(f_t f, uint32_t x, double* val) {
 	}
 	return true;
 }
+
 void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 	//implement mutation
 }
+
 void PrintData(f_t* fs) {
 	//Syntax: Fitness,Length,Data[0] Data[1] ... Data[n]\n
 	//Go through the Data and print them
 	for (uint32_t i = 0; i < N_FUNCTIONS; i++) {
 
 		//Print the current Fitness
-		printf("%.5d,", fs[i].fit);
+		printf("%.5f,", fs[i].fit);
 
 		//Print the current length
 		printf("%" PRIu32 ",", fs[i].term.len);
@@ -497,31 +508,27 @@ void PrintData(f_t* fs) {
 		printf("\n");
 	}
 }
+
 double	GetParam(uint8_t* d, uint16_t* i, double x, double SolA, double SolB) {
 	//Check if the Following is the solution A
-	if (d[*i] == SLA)
-	{
+	if (d[*i] == SLA) {
 		*i += 1;
 		return SolA;
 	}
 	//Check if the Following is the solution B
-	else if (d[*i] == SLB)
-	{
+	else if (d[*i] == SLB) {
 		*i += 1;
 		return SolB;
 	}
 	//Check if the Following is the Variable X
-	else if (Data[*i] == VAR)
-	{
+	else if (Data[*i] == VAR){
 		*i += 1;
 		return x;
 	}
-	//Check if the Following is a number
-	else
-	{
-		*i += 1;
-		double Temp = *(double*)&d[*i];
-		*i += sizeof(double);
-		return Temp;
-	}
+	
+    //Check if the Following is a number
+    *i += 1;
+    double Temp = *(double*)&d[*i];
+    *i += sizeof(double);
+    return Temp;
 }
