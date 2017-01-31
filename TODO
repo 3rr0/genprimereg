@@ -1,0 +1,7 @@
+Zeiteffizienz:
+    - Anzahl Primzahlen als Konstante definieren
+    - Optimize for speed in Makefile -O
+
+- Implement gnus bignum lib
+- Comment headerfiles
+-Errno test
