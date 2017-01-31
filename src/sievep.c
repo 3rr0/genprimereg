@@ -22,7 +22,6 @@
 */
 
 #include    <sievep.h>
-#include    <primereg.h>
 #include    <inttypes.h>
 #include    <stdbool.h>
 #include    <stdlib.h>
@@ -31,34 +30,38 @@
 
 
 /// Check for prime.dat == NULL
-uint32_t sievep( uint32_t* p, uint32_t n, uint64_t limit ) {
-    uint32_t nPrimes = 1;
-    p[0]             = 2;
-    if( n == 1 ) return 1;
+uint32_t sievep( uint32_t* p, uint32_t N, uint64_t limit ) {
+    p[0] = 2;                                                                                       // Needed because all even numbers are deprecated
+    if( N == 1 ) return 1;
     
-    arr_t    primes;
-    primes.len        = ceil( limit / 2 ) - 1;
-    primes.dat        = (uint8_t*)malloc( sizeof(uint8_t) * primes.len );
+    uint32_t primeLen = ceil( limit / 2 ) - 1;
+    bool*    prime    = (bool*)malloc( sizeof(bool) * primeLen );
     
-    memset( primes.dat, true, primes.len );                                                           // Assume all numbers are prime
+    memset( prime, true, primeLen );                                                                // Assume all numbers are prime
     
     
     // Sieve
     for(uint64_t i = 0, n = 3;  n*n <= limit;  i++, n += 2) {
-        if(primes.dat[i]) {														    				// If a undeleted number is found, it's a prime number
-            
-            p[nPrimes] = n;                                  // added
-            nPrimes++;                                       // added
-            if( nPrimes == n ) break;                        // added
+        if(prime[i]) {														    				    // If a undeleted number is found, it's a prime number
 
             for(uint64_t m = n*n;  m <= limit;  m += 2*n) {										    // Then delete the multiples of this prime number (because these numbers are composed of prime[n])
-				primes.dat[ (m-3) / 2 ] = false;									    		    // Number needs to be uneven, since the list only contains uneven numbers. So m is incremented by 2*n
+				prime[ (m-3) / 2 ] = false;									    		            // Number needs to be uneven, since the list only contains uneven numbers. So m is incremented by 2*n
             }
             
         }
 	}
+    
+    // Count number of found primes
+    uint32_t nPrimes = 1;
+    for( uint32_t i = 0, n = 3;  i < primeLen;  i++, n +=2 ) {
+        if( prime[i] ) {                                                                            // A prime number has been found
+            p[nPrimes] = n;                                  // added
+            nPrimes++;                                       // added
+            if( nPrimes == N ) break;                        // added            
+        }
+    }
 
 
-    free(primes.dat);
+    free(prime);
     return nPrimes;
 }

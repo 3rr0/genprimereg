@@ -209,11 +209,11 @@ void initf(f_t* f) {
 			Buf[Len + 1] = SLB;
 		else
 			Buf[Len + 1] = SLA;
-		UsedA = false;
-		UsedB = false;
+		AUsed = false;
+		BUsed = false;
 		Len += 2;
 		Buf[Len] = SLA;
-		UsedA = true;
+		AUsed = true;
 	}
 
 	//Add the End
@@ -403,7 +403,7 @@ bool calcfval(f_t f, uint32_t x, double* val) {
 		case ASIN:
 			i++;
 			TempA = GetParam(f.term.dat, &i, (double)x, SolA, SolB);
-			if (a < -1.0 || a > 1.0)
+			if (TempA < -1.0 || TempA > 1.0)
 				return false;
 			if (f.term.dat[i] == SLA)
 				SolA = asin(TempA);
@@ -413,7 +413,7 @@ bool calcfval(f_t f, uint32_t x, double* val) {
 		case ACOS:
 			i++;
 			TempA = GetParam(f.term.dat, &i, (double)x, SolA, SolB);
-			if (a < -1.0 || a > 1.0)
+			if (TempA < -1.0 || TempA > 1.0)
 				return false;
 			if (f.term.dat[i] == SLA)
 				SolA = acos(TempA);
@@ -521,7 +521,7 @@ double	GetParam(uint8_t* d, uint16_t* i, double x, double SolA, double SolB) {
 		return SolB;
 	}
 	//Check if the Following is the Variable X
-	else if (Data[*i] == VAR){
+	else if (d[*i] == VAR){
 		*i += 1;
 		return x;
 	}
