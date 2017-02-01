@@ -16,7 +16,7 @@ CFLAGS	  = -Wall -std=c11 -I$(INC_DIR) $(LLIBS)
 
 
 
-.PHONY: all clean
+.PHONY: all uninstall clean
 all: $(PROG_NAME)
 
 
@@ -30,6 +30,10 @@ $(OBJ_SRC): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 
+uninstall:
+    rm -f $(PROG_NAME)
+    make clean
+
 clean:
-	rm -f $(OBJ_DIR)/*.o $(PROG_NAME)
+	rm -f $(OBJ_DIR)/*.o
 
