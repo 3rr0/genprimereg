@@ -4,3 +4,4 @@ Simon:
 - https://de.wikipedia.org/wiki/Primzahl
 - https://www.youtube.com/watch?v=ITLjfRiAc10
 - Arbeitsblatt von Herrn Fischer: Algorithmus Effizienz
+- http://www.iti.fh-flensburg.de/lang/algorithmen/asymp.htm
