@@ -1,0 +1,5 @@
+- https://en.wikipedia.org/wiki/Formula_for_primes
+- https://de.wikipedia.org/wiki/Sieb_des_Eratosthenes
+- https://de.wikipedia.org/wiki/Primzahl
+- https://www.youtube.com/watch?v=ITLjfRiAc10
+
