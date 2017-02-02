@@ -6,3 +6,8 @@ Simon:
 - Arbeitsblatt von Herrn Fischer: Algorithmus Effizienz
 - http://www.iti.fh-flensburg.de/lang/algorithmen/asymp.htm
 - http://www.programming-algorithms.net/article/41297/Sieve-of-Eratosthenes
+- https://de.wikipedia.org/wiki/Miller-Rabin-Test
+- http://www-cs-students.stanford.edu/~jl/Essays/ga.html
+- https://en.wikipedia.org/wiki/RSA_numbers#RSA-768
+- https://en.wikipedia.org/wiki/RSA_Factoring_Challenge
+
