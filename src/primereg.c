@@ -4,7 +4,8 @@
 #include	<stdio.h>
 #include	<time.h>
 #include    <math.h>
-
+#include	"..\inc\primereg.h"
+#include	"..\inc\def.h"
 
 
 void printArr( arr_t arr ) {
@@ -43,7 +44,7 @@ void initf(f_t* f) {
 				else if (T == 1) {
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 				else {
@@ -70,7 +71,7 @@ void initf(f_t* f) {
 				else if (T == 1) {
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 				else {
@@ -99,7 +100,7 @@ void initf(f_t* f) {
 				else if (T == 1) {
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 				else {
@@ -150,7 +151,7 @@ void initf(f_t* f) {
 				else {					//Add a random Number
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 			}
@@ -166,7 +167,7 @@ void initf(f_t* f) {
 				else {					//Add a random Number
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 				//Get a random number
@@ -180,7 +181,7 @@ void initf(f_t* f) {
 				else {					//Add a random Number
 					Buf[Len] = NUM;
 					Len += 1;
-					*(double*)&Buf[Len] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Buf[Len] = GetRandDb();
 					Len += sizeof(double);
 				}
 			}
@@ -637,7 +638,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 					Element[i * ElementSize + 1] = SLB;
 				else {
 					Element[i * ElementSize + 1] = NUM;
-					*(double*)&Element[i * ElementSize + 2] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Element[i * ElementSize + 2] = GetRandDb();
 				}
 			}
 			else {
@@ -650,7 +651,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 					Element[i * ElementSize + 1] = SLB;
 				else {
 					Element[i * ElementSize + 1] = NUM;
-					*(double*)&Element[i * ElementSize + 2] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+					*(double*)&Element[i * ElementSize + 2] = GetRandDb();
 				}
 				T = rand() % 4;
 				if (Element[i * ElementSize + 1] != NUM) {
@@ -662,7 +663,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 						Element[i * ElementSize + 2] = SLB;
 					else {
 						Element[i * ElementSize + 2] = NUM;
-						*(double*)&Element[i * ElementSize + 2] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+						*(double*)&Element[i * ElementSize + 2] = GetRandDb();
 					}
 				}
 				else {
@@ -674,7 +675,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 						Element[i * ElementSize + 2 + sizeof(double)] = SLB;
 					else {
 						Element[i * ElementSize + 2 + sizeof(double)] = NUM;
-						*(double*)&Element[i * ElementSize + 2 + sizeof(double)] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+						*(double*)&Element[i * ElementSize + 2 + sizeof(double)] = GetRandDb();
 					}
 				}
 			}
@@ -711,7 +712,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 						Element[2 + sizeof(double)] = VAR;
 					else {
 						Element[2 + sizeof(double)] = NUM;
-						*(double*)&Element[3 + sizeof(double)] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+						*(double*)&Element[3 + sizeof(double)] = GetRandDb();
 					}
 				}
 			}
@@ -721,7 +722,7 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 						Element[2] = VAR;
 					else {
 						Element[2] = NUM;
-						*(double*)&Element[3] = (double)((rand() % MAX_RAND_DOUBLE) + ((rand() % MAX_RAND_DOUBLE) / (pow(10, MAX_RAND_DOUBLE_DIG))));
+						*(double*)&Element[3] = GetRandDb();
 					}
 				}
 			}
@@ -766,9 +767,9 @@ void repopulate(const f_t* ParA, const f_t* ParB, f_t* Child) {
 	int8_t ParamA = 0;
 	int8_t ParamB = 0;
 	for (uint16_t i = 0; i < ElementCount; i++) {
-		if ((rand() % 101) > PERC_INHERIT || CurSize >= Child->term.len - 40)
+		if (CurSize >= Child->term.len - 40)
 			i = ElementCount;
-		else {
+		else if (rand() % 101 <= PERC_INHERIT) {
 			//Get the Arguments
 			if (Element[i * ElementSize] < FUNCTION_ONEARG) {
 				ParamA = Element[i * ElementSize + 1];
@@ -880,7 +881,7 @@ void PrintData(f_t* fs) {
 	}
 }
 
-double	GetParam(uint8_t* d, uint16_t* i, double x, double SolA, double SolB) {
+double GetParam(uint8_t* d, uint16_t* i, double x, double SolA, double SolB) {
 	//Check if the Following is the solution A
 	if (d[*i] == SLA) {
 		*i += 1;
@@ -902,4 +903,27 @@ double	GetParam(uint8_t* d, uint16_t* i, double x, double SolA, double SolB) {
     double Temp = *(double*)&d[*i];
     *i += sizeof(double);
     return Temp;
+}
+
+double GetRandDb(){
+	//Variables
+	double HD = 0.0;
+	double LD = 0.0;
+	double Sol = 0.0;
+
+	//Create a random High-Value
+	HD = rand() % MAX_RAND_DOUBLE;
+
+	//Create a random Low-Value
+	LD = rand() % pow(10, MAX_RAND_DOUBLE_DIG);
+	for (; LD > 1.0; LD /= 10) {};
+
+	//Create the new Solution
+	Sol = HD + LD;
+
+	//Check if the Number is supposed to be negative
+	if (rand() % 2 == 0)
+		Sol *= -1;
+
+	return Sol;
 }

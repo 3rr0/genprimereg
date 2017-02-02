@@ -73,3 +73,4 @@ bool	    calcfval	(f_t f, uint32_t x, double* val);
 void	    repopulate	(const f_t* ParA, const f_t* ParB, f_t* Child);
 void	    PrintData	(f_t* fs);
 double	    GetParam	(uint8_t* d, uint16_t* i, double x, double SolA, double SolB);
+double		GetRandDb	();
