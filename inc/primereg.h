@@ -8,18 +8,18 @@
 
 
 /*
-    Function Syntax:	FUNCTIONS - ParamA - (evtl. ParamB) - SaveVal
+Function Syntax:	FUNCTIONS - ParamA - (evtl. ParamB) - SaveVal
 
-    Example:
-    y=(x + 4)^6
+Example:
+y=(x + 4)^6
 
-    Syntax:			ADD VAR NUM 4.0                     SLA POW SLA NUM 6.0                     SLA RET SLA
-    In Bytes(hex):	10	00	03	00 00 00 00 00 00 00 04 01  16  01  03  00 00 00 00 00 00 00 06 01  ff  01
+Syntax:			ADD VAR NUM 4.0                     SLA POW SLA NUM 6.0                     SLA RET SLA
+In Bytes(hex):	10	00	03	00 00 00 00 00 00 00 04 01  16  01  03  00 00 00 00 00 00 00 06 01  ff  01
 
-    Explained:
-    -> add(x + (Number)4) and save in SLA
-    -> power(Value in Sla to power of (Number)6)) save in SLA
-    -> End with y in SLA
+Explained:
+-> add(x + (Number)4) and save in SLA
+-> power(Value in Sla to power of (Number)6)) save in SLA
+-> End with y in SLA
 */
 enum FUNCTIONS {
 	VAR,			//Usage of Variable x
@@ -41,11 +41,12 @@ enum FUNCTIONS {
 	ASIN,			//double arcsin(double a)					-> asin(a)						- if a < -1.0 or a > 1.0 return -1.0
 	ACOS,			//double arccos(double a)					-> acos(a)						- if a < -1.0 or a > 1.0 return -1.0
 	ATAN,			//double arctan(double a)					-> atan(a)
-//FAC,				//double factorial(double a)				-> (int64_t)a!					- evtl. limitations in size
 	EXP,			//double exponent(double a)					-> e^(int64_t)a					- if a < 0 return -1.0
 	RET = 0xff		//end of function
 };
 
+//the Type to be used
+typedef double tc_t;	//define the temporary-calculating Type as double
 
 // Types
 typedef struct array {
@@ -62,15 +63,16 @@ typedef struct function {
 
 // Functions
 /*
-    Prints an array to stdout in the following format:
-    element0, element1, ..., elemtentn, \n
+Prints an array to stdout in the following format:
+element0, element1, ..., elemtentn, \n
 */
-void        printArr    ( arr_t arr );
-void    	initf		(f_t* f);
-void        evolve      (f_t* fs, uint32_t* p);
-void    	calcFitness	(f_t* f, uint32_t* p);
-bool	    calcfval	(f_t f, uint32_t x, double* val);
-void	    repopulate	(const f_t* ParA, const f_t* ParB, f_t* Child);
-void	    PrintData	(f_t* fs);
-double	    GetParam	(uint8_t* d, uint16_t* i, double x, double SolA, double SolB);
-double		GetRandDb	();
+void        printArr(arr_t arr);
+void    	initf(f_t* f);
+void        evolve(f_t* fs, uint32_t* p);
+void    	calcFitness(f_t* f, uint32_t* p);
+bool	    calcfval(f_t f, uint32_t x, tc_t* val);
+void	    repopulate(const f_t* ParA, const f_t* ParB, f_t* Child);
+void	    PrintData(f_t* fs);
+tc_t	    GetParam(uint8_t* d, uint16_t* i, tc_t x, tc_t SolA, tc_t SolB);
+tc_t		GetRandTc();
+void		printFunc(arr_t d);

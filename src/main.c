@@ -38,6 +38,7 @@ int main( int argc, char* argv[] ) {
 		// Print data
 		if (++Count >= N_PRINTDATA) {
 			PrintData(Data);
+			printf("\n");
 			Count = 0;
 		}
 	} while (1);

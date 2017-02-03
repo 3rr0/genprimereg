@@ -31,8 +31,8 @@ $(OBJ_SRC): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 
 uninstall:
-    rm -f $(PROG_NAME)
-    make clean
+	rm -f $(PROG_NAME)
+	make clean
 
 clean:
 	rm -f $(OBJ_DIR)/*.o
