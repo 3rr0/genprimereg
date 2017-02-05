@@ -10,4 +10,7 @@ Simon:
 - http://www-cs-students.stanford.edu/~jl/Essays/ga.html
 - https://en.wikipedia.org/wiki/RSA_numbers#RSA-768
 - https://en.wikipedia.org/wiki/RSA_Factoring_Challenge
-
+- https://de.wikipedia.org/wiki/Eulersche_Phi-Funktion
+- https://www.youtube.com/watch?v=oXlY-yx1oIw
+- https://en.wikipedia.org/wiki/Sieve_of_Atkin
+- https://en.wikipedia.org/wiki/Largest_known_prime_number

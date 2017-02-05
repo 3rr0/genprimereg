@@ -1,3 +1,4 @@
+% preamble
 \documentclass[a4paper,12pt]{article}
 
 \usepackage[ngerman]{babel}
@@ -8,74 +9,100 @@
 \usepackage{graphicx}
 \usepackage{minted}
 \usepackage{float}
+\usepackage{xcolor}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 % http://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
 
 
-
+% body
 \begin{document}
 
 % Deckblatt
 \begin{titlepage}
 \title{Primzahlregression mit Hilfe genetischer Algorithmen}
 \author{Björn Boss Henrichsen und Simon Budinsky\\Betreut von Herrn Christoph Fischer}
-\date{\today{}}
-\maketitle{}
-\newpage{}
+\date{\today}
+\maketitle
+\newpage
 \end{titlepage}
 
-\tableofcontents{}
-\newpage{}
+\tableofcontents
+\newpage
 
+\section{Einleitung}
+\subsection{Problemstellung}
+In der Mathematik gibt es einige charakteristische Zahlen, die auf Grund der Komplexität ihrer Bestimmung eine besondere Anwendung finden. Eine solche Zahl stellen unter anderem Primzahlen dar. Unter einer Primzahl versteht man eine natürliche Zahl größer eins, welche nur durch sich selbst und eins teilbar ist. Somit ist die Mächtigkeit der Teilermenge einer Primzahl zwei.
 
-\section{Definitionsverzeichnis}
-\subsection{Primzahl}
-Eine natürliche Zahl ist genau dann eine Primzahl, wenn sie größer als eins und nur durch sich selbst und eins teilbar ist. Somit ist die Mächtigkeit der Teilermenge einer Primzahl zwei.
+Über 2000 Jahre lang konnte man keinen praktischen Nutzen aus dem Wissen über die Primzahlen ziehen. Dies änderte sich erst mit dem Aufkommen elektronischer Rechenmaschinen, bei denen die Primzahlen beispielsweise in der Kryptographie eine zentrale Rolle spielen.
 
-\subsection{Effizienz eines Algorithmus}
-Ein Algorithmus ist genau dann effizient, wenn er ein vorgegebenes Problem mit möglichst wenig Ressourcenaufwand (zB.: Speicher, Zeit) löst.
+Primzahlen sind hierfür deshalb so gut geeignet, weil es bisher keine Formel gibt, welche Primzahlen effizient berechenbar generiert. 
+\subsection{Ziel des Projektes}
+Das Ziel unseres Projektes besteht darin, eine Folge zu finden, die Primzahlen möglichst gut beschreibt. Dazu setzen wir einen genetischen Algorithmus ein, welcher zu vorgegebenen Datenpunkten eine Regressionsfunktion bestimmen soll. Diese Datenpunkte sollen Primzahlen sein, welche wir mit Hilfe einer optimierten Variante des Siebes des Eratosthenes erzeugen.
 
-\subsection{Laufzeit}
-Die Anzhal der Schritte, die ein Algorithmus zur Lösung eines Problems benötigt, wird als Laufzeit bezeichnet.
-
-\subsection{Computercluster}
-Ein Computercluster ist Netz aus zusammengeschalteten Computern. Es wird meistens zur Lösung von Problemen verwendet, für die die Leistung eines Computers nicht ausreichend ist.
-
-\newpage{}
-
-
-\section{Ziel des Projekts}
-Bisher gebe es keine Formel, welche Primzahlen effizient berechenbar generiert. 
-Wir wollen solch eine mit Hilfe eines genetischen Algorithmus finden. Hierfür soll dieser eine Folge finden, welche möglichst genau Primzahlen beschreibt.
+\newpage
 
 \section{Relevanz von Primzahlen}
-Über 2000 Jahre lang konnte man keinen praktischen Nutzen aus dem Wissen über die Primzahlen ziehen. Dies änderte sich erst mit dem Aufkommen elektronischer Rechenmaschinen, bei denen die Primzahlen beispielsweise in der Kryptographie eine zentrale Rolle spielen. So gibt es Verschlüsselungsalgorithmen, welche auf der Primfaktorzerlegung basieren. 
-Ein modernes Beispiel hierfür ist der RSA-Algorithmus. Dessen Verschlüsselung ist sicher, da bisher offiziell keine Methode gefunden wurde, Zahlen effizient in ihre Primfaktoren zu zerlegen.
+\subsection{RSA-Verschlüsselung} 
+In der Kryptographie gibt es Algorithmen, welche auf der Primfaktorzerlegung basieren. Ein modernes Beispiel hierfür ist der asymmetrische Verschlüsselungsalgorithmus RSA. Da bisher offiziell keine effiziente Methode gefunden wurde, Primfaktorzerlegung zu betreiben, ist eine Verschlüsselung mit RSA sicher.
 
-Funktionsweise RSA:
-…
+\subsubsection{Funktionsweise RSA}
+$\varphi(n)$: Eulersche Phi-Funktion\\
+$\varphi(n) := |\{a \in \mathbb{N}|1\leq a\leq n \land ggT(a,n) = 1\}|$
 
-Aktuell gibt es einen \href{https://en.wikipedia.org/wiki/RSA_Factoring_Challenge}{RSA-Wettbewerb}. Ziel ist es, die zwei Primfaktoren einer RSA Zahl zu finden. Denn findet man diese, so ist die Verschlüsselung geknackt. Dies wird mit einem entsprechenden Preisgeld belohnt.
-Die bisher größte zerlgte RSA Zahl hat 232 Dezimalstellen (768 Bits, RSA-768) und wurde am 12. Dezember 2009 von Thorsten Kleinjung, Paul Zimmermann u.a. für ein Preisgeld von \$ 50000 USD faktorisiert. Hierfür wurde ein Rechencluster verwendet, welches etwa tausend Mal schneller als ein 2,2GHz AMD Opteron single-core Prozessor ist. Trotzdem dauerte die Faktorisierung zwei Jahre. 
-Dabei muss bedacht werden, dass heutzutage eher längere RSA-Zahlen verwendet werden. Häufig verbreitet sind Zahlen im Bereich von 309 bis 617 Dezimalstellen (1024-2048 Bits (das Preisgeld für eine RSA-2048-Zahl beträgt aktuell \$ 200000 USD (2.01.17))).
-Zusätzlich sollte die Verschlüsselung in ein paar Minuten, am besten wenige Sekunden, erfolgen. So könnte das Passwort zum Bankaccount per Man-In-The-Middle-Angriff einfach ausgelesen werden. Dies ist natürlich nur eine von den vielen fatalen Folgen, wenn RSA geknackt werden würde. Der Mensch könnte seine Privatsphäre verlieren und zum ,,gläsernen Menschen“ werden.
-Eine primzahlbeschreibende Folge wird vor allem in der Kryptographie benötigt. Damit RSA funktioniert, werden zunächst zwei Primzahlen erzeugt. Diese müssen zunächst gefunden werden. Hierfür werden Test wie der Rabin-Miller-Test verwendet, der allerdings nur über eine Zahl zwei Aussagen kann: zusammengesetzt oder wahrscheinlich prim. Er liefert also nicht mit hundertprozentiger Sicherheit Zahlen, die anschließend für RSA verwendet werden. Ist eine Zahl nicht prim, funktioniert der RSA-Algorithmus nicht und kann geknackt werden. 
+\begin{enumerate}
+\item Nimm zwei (sehr, sehr große) Primzahlen $p$ und $q$
+\item Bilde das RSA-Modul $N = p * q$
+\item Bestimme $\varphi(N) = \varphi(p * q) = \varphi(p) * \varphi(q) = (p-1) * (q-1)$
+\item Wähle eine Zahl $e$ mit $1 < e < \varphi(N)$ mit $ggT(e, \varphi(N)) = 1$
+\item Bestimme $d$ mit $e*d \equiv 1$  $mod$ $\varphi(N)$
+\end{enumerate}
+
+\noindent Jetzt bilden $(e,N)$ den öffentlichen und $(d,N)$ den privaten Schlüssel.\\
+Mit Hilfe des privaten Schlüssels lässt sich ein Klartext $T$ zum Geheimtext $G$ verschlüsseln:\\\\
+\indent $G = T^e$ $mod$ $N$\\\\
+\noindent Der Geheimtext lässt sich mit dem öffentlichen Schlüssel wieder entschlüsseln:\\\\
+\indent $T = G^d$ $mod$ $N$\\
+
+\subsubsection{Der RSA-Wettbewerb}
+Aktuell gibt es einen \href{https://en.wikipedia.org/wiki/RSA_Factoring_Challenge}{RSA-Wettbewerb}. Ziel ist es, die zwei Primfaktoren $p$ und $q$ einer RSA Zahl $N$ zu finden. Denn findet man diese, so ist die Verschlüsselung geknackt. \\Dies wird mit einem entsprechenden Preisgeld belohnt.
+Die bisher größte zerlgte RSA Zahl hat 232 Dezimalstellen (768 Bits, RSA-768) und wurde am 12. Dezember 2009 von Thorsten Kleinjung, Paul Zimmermann u.a. für ein Preisgeld von \$ 50000 USD faktorisiert. Hierfür wurde ein Rechencluster verwendet, welches etwa tausend Mal schneller als ein 2,2GHz AMD Opteron single-core Prozessor ist. Trotzdem dauerte die Faktorisierung zwei Jahre.\\ 
+Dabei muss bedacht werden, dass heutzutage eher längere RSA-Zahlen verwendet werden. Häufig verbreitet sind Zahlen im Bereich von 309 bis 617 Dezimalstellen (1024-2048 Bits (das Preisgeld für eine RSA-2048-Zahl beträgt aktuell \$ 200000 USD (02.01.17))).
+
+\subsubsection{Folgen einer geknackten Verschlüsselung}
+Zusätzlich sollte die Verschlüsselung in ein paar Minuten, am besten wenigen Sekunden, erfolgen. So könnte das Passwort für den Bankaccount per Man-In-The-Middle-Angriff einfach ausgelesen werden. Dies ist natürlich nur eine von den vielen fatalen Folgen, wenn RSA geknackt werden würde. Der Mensch könnte seine Privatsphäre verlieren und zum ,,gläsernen Menschen“ werden.
+\subsection{Primzahltests}
+Eine primzahlbeschreibende Folge wird vor allem in der Kryptographie benötigt. Damit RSA funktioniert, werden zunächst zwei Primzahlen erzeugt. Diese müssen zunächst gefunden werden.\\ Hierfür werden Test wie der Rabin-Miller-Test verwendet, der allerdings nur über eine Zahl zwei Aussagen treffen kann: zusammengesetzt oder wahrscheinlich prim. \\Er liefert also nicht mit hundertprozentiger Sicherheit Zahlen, die anschließend für RSA verwendet werden. Ist eine Zahl nicht prim, funktioniert der RSA-Algorithmus nicht und kann geknackt werden. \\
 Dies kann verhindert werden, indem stets mit hundertprozentiger Sicherheit über eine Zahl ausgesagt werden kann, ob sie prim ist. Hierfür könnte eine Folge für Primzahlen verwendet werden und somit die Primzahltest ablösen.
-Ein weiteres Problem ist folgendes: Finde die nte Primzahl. Beim Sieb des Eratosthenes zum Beispiel müssen zunächst alle Primzahlen vor der nten gefunden werden. Gäbe es eine Folge für Primzahlen, könnte dieses Problem wesentlich effizienter gelöst werden. Folglich wären Algorithmen zum Finden von Primzahlen wie das Sieb des Eratosthenes obsolet.
+\subsection{Finden der $n$ten Primzahl}
+Ein weiteres Problem ist folgendes: Finde die $n$te Primzahl.\\ Beim Sieb des Eratosthenes zum Beispiel müssen zunächst alle Primzahlen vor der $n$ten gefunden werden. Gäbe es eine Folge für Primzahlen, könnte dieses Problem wesentlich effizienter gelöst werden. Folglich wären Algorithmen zum Finden von Primzahlen wie das Sieb des Eratosthenes obsolet.
+
+\subsection{Die größte Primzahl}
+Vor etwa 2300 Jahren hat Euklid bewiesen: Es gibt unendlich viele Primzahlen. Dies wurde 1737 durch Leonhard Eulers Beweis bestärkt, der folgendes zeigte:\\\\
+\indent $\sum_{p\in\mathbb{P}}{\frac{1}{p}} = \infty$\\
+
+\noindent Heutzutage versucht man stets größere Primzahlen zu finden. Daraus wurde eine Art Wettbewerb.
+Die Aktuell größte Primzahl (Stand Januar 2017)  hat 22.338.618 Dezimalstellen und wurde 2016 vom \emph{Great Internet Mersenne Prime Search}-Projekt gefunden.\\
+Bei der Suche kann jeder teilnehmen. Hierfür muss lediglich eine kostenlose Software heruntergeladen werden, welche nach Primzahlen sucht. Findet der Comupter eine neue ,,größte" Primzahl, erhält man \$3000 USD.\\
+Mit Hilfe einer Folge für Primzahlen könnte diese direkt gefunden werden.
+
+
 
 \newpage{}
 
 
 \section{Das Sieb des Eratosthenes}
 \subsection{Allgemein}
-Das Sieb des Eratosthenes ist ein Algorithmus, mit welchen man Primzahlen findet kann. Er wurde
-nach dem grieschischen Mathematiker Eratosthenes von Kyrene bennant, welcher im 3. Jahrhundert v. Chr. lebte. Laut \href{https://de.wikipedia.org/wiki/Sieb_des_Eratosthenes}{wikipedia.org} habe dieser selbst nicht das Verfahren entdeckt. Eratosthenes habe lediglich die Bezeichnung ,,Sieb“ eingeführt .
-Für Primzahlen kleiner 10000000 zählt der Algorithmus zu den effizientesten Methoden. Für größere Zahlen empfehlen sich effizientere Algorithmen,. Beispiele sind der Lehmann-Test oder der Rabin-Miller-Test, welcher auch in modernen Verschlüsselungsalgortihmen (RSA) verwendet wird.
+Das Sieb des Eratosthenes ist ein Algorithmus, mit welchen man Primzahlen findet kann. \\Er wurde
+nach dem griechischen Mathematiker Eratosthenes von Kyrene benannt, welcher im 3. Jahrhundert v. Chr. lebte. \\Laut \href{https://de.wikipedia.org/wiki/Sieb_des_Eratosthenes}{wikipedia.org} habe dieser selbst nicht das Verfahren entdeckt. Eratosthenes habe lediglich die Bezeichnung ,,Sieb“ eingeführt.\\
+Für Primzahlen kleiner 10.000.000 zählt der Algorithmus zu den effizientesten Methoden. Für größere Zahlen empfehlen sich effizientere Algorithmen. Beispiele sind der Lehmann-Test oder der Rabin-Miller-Test, welcher auch in modernen Verschlüsselungsalgorithmen (RSA) verwendet wird.
 
 \subsection{Funktionsweise}
-Zu Beginn werden alle natürlichen Zahlen von 2 bis einer Grenze limit aufgeschrieben. Anfangs sind all diese nicht gestrichen und somit potentielle Primzahlen. Nun durchläuft man das Intervall. Trifft man auf eine ungestrichene Zahl, so ist diese eine Primzahl. Jetzt werden alle Vielfachen dieser gestrichen, die größer oder gleich deren Quadrat sind. Ist man am Ende des Intervalls angekommen, liegen sowohl gestrichene als ungestrichene Zahlen vor. Dabei ist jede ungestrichene Zahl prim.
+Zu Beginn werden alle natürlichen Zahlen von 2 bis einer Grenze $n$ aufgeschrieben. Anfangs sind all diese nicht gestrichen und somit potentielle Primzahlen. Nun durchläuft man das Intervall. Trifft man auf eine ungestrichene Zahl, so ist diese eine Primzahl. Jetzt werden alle Vielfachen dieser gestrichen, die größer oder gleich deren Quadrat sind. Ist man am Ende des Intervalls angekommen, liegen sowohl gestrichene als ungestrichene Zahlen vor. Dabei ist jede ungestrichene Zahl prim.
 
-Es genügt, die Vielfachen von Primzahlen zu streichen, die kleiner oder gleich der Wurzel der Grenze limit sind. Denn ist ein Primfaktor einer zusammengesetzten Zahl immer kleiner gleich der Wurzel der zusammengesetzten Zahl.
+Es genügt, die Vielfachen von Primzahlen zu streichen, die kleiner oder gleich der Wurzel der Grenze $n$ sind. Denn ist ein Primfaktor einer zusammengesetzten Zahl immer kleiner gleich der Wurzel der zusammengesetzten Zahl.
 
 Außerdem muss beim Streichen der Vielfachen erst mit dem Quadrat der Primzahl begonnen werden, da alle kleineren Vielfachen bereits getrichen wurden.
 
@@ -95,23 +122,24 @@ So werden für jede Primzahl
 \[ p_j \leq \sqrt{n} \]
 höchstens $\frac{n}{p_j}$ Zahlen gestrichen. Somit erhält man für die Anzahl an ,,Streichungen":\\
 \[ \frac{n}{2} + \frac{n}{3} + \frac{n}{5} + ... = \sum_{p_j\leq\sqrt{n}}{\frac{n}{p_j}} = n * \sum_{p_j\leq\sqrt{n}}{\frac{1}{n}}\]
-Nun muss die asymptotische Ordnung $o$ vom zweiten Faktor gefunden werden. Diese ist $O$(log log $n$) (Der Beweis hierfür ist nicht trivial und würde den Rahmen der Facharbeit sprengen). Daher ergibt sich eine Gesamtkomplexität von $O$($n$ log log $n$).
+Nun muss die asymptotische Ordnung $O$ vom zweiten Faktor gefunden werden. Diese ist $O$(log log $n$) (Der Beweis hierfür ist nicht trivial und würde den Rahmen der Facharbeit sprengen). Daher ergibt sich eine Gesamtkomplexität von $O$($n$ log log $n$).
 
 
 \subsection{Optimierungsmaßnamen}
 
 \subsubsection{Weglassen der eins}
-Da die eins keine Primzahl ist, kann man sie vorab ignorieren. Somit wird die Länge des primes-Puffers um ein Byte verringert (Speichereffizienz). Zusätzlich muss zu Beginn ein Byte initialisiert werden. In der äußeren for()-Schleife wird ebenfalls ein Durchlauf weniger benötigt (Zeiteffizienz).\\
+Da die eins keine Primzahl ist, kann man sie vorab ignorieren. Somit wird die Länge des primes-Puffers um ein Byte verringert (Speichereffizienz). Zusätzlich muss zu Beginn ein Byte weniger initialisiert werden. In der äußeren for()-Schleife wird ebenfalls ein Durchlauf weniger benötigt (Zeiteffizienz).\\
 
 \subsubsection{Quadrieren statt Radizieren}
-Des Weiteren ist das Radizieren an einem Computer ineffizienter als das Quadrieren. Denn kann für das Radizieren eine Bisektion (Software) benötigt werden, wohingegen Quadrieren lediglich eine Multiplikation ist, welche direkt in der ALU (Hardware) ausgeführt werden kann.\\
-Somit kann man schreiben:\\
+Des Weiteren ist das Quadrieren an einem Computer effizienter als das Radizieren. Dies erklärt sich darin, dass für das Radizieren eine Bisektion (Software) benötigt werden kann. Dahingegen ist das Quadrieren lediglich eine Multiplikation, welche direkt in der ALU (Hardware) ausgeführt wird.\\
+Somit kann man schreiben:\\\\
+$i$: Aktuell betrachtete Zahl\\
 \[ i \leq \sqrt{n} \Rightarrow i * i \leq n \]
 
 \subsubsection{Zahlen im Vorraus streichen}
 Der Algorithmus kann weitergehend optimiert werden, indem man Zahlen vorab ,,streicht“. So haben wir alle Vielfachen von zwei bereits ,,gestrichen“. Daraus ergibt sich folgende Speichereinsparung:\\
 \\
-$a$: Belegter RAM-Speicher mit allen Zahlen\\
+$a$: Belegter RAM-Speicher mit allen Zahlen [0;$n$]\\
 $b$: Belegter RAM-Speicher ohne eins und geraden Zahlen\\
 $n$: Obere Grenze des Siebes\\
 $k$: Proportionalitätsfaktor\\
@@ -132,15 +160,15 @@ Nach den oben genannten Optimierungen könnte ein Programmablaufplan so aussehen
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sieveOptimized.jpg}
 \end{figure}
 
-Nun könnte man immer mehr Zahlen im Vorraus ,,streichen". Hierfür gibt es allerdings andere Algortihmen. Der NAME zum Beispeil schließt vorher Zahlen bestimmter Restklassen aus.
+\noindent Nun könnte man immer mehr Zahlen im Vorraus ,,streichen". Hierfür gibt es allerdings andere Algortihmen. Das \emph{sieve of Atkin} zum Beispiel schließt vorher Zahlen bestimmter Restklassen aus und hat eine lineare Laufzeitkomplexität $O(n)$.
 
 \subsection{Messungen}
 \subsubsection{Methodik}
 Um die Laufzeit des Siebes für verschiedene Grenzen $limit$ zu messen, wurde das Programm für jedes $limit$ jeweils neu kompiliert und ausgeführt. Nachdem die Primzahlen gefunden sind, gibt das Programm die böntigte Zeit zwischen Speicherallokation für den Primzahl-Puffer und dem Finden der Primzahlen in Sekunden aus. Diese Ausgabe wurde in eine .csv-Datei per Linux-Bash umgeleitet, um somit später mit LibreOfficeCalc Diagramme zu erzeugen. Dabei besteht diese Datei aus drei Spalten. Die erste Spalte repräsentiert die aktuelle Grenze $limit$, die zweite die gemessene Zeit in Sekunden und in der dritten Spalte steht die Anzahl gefundener Primzahlen.
 \\\\
-Dafür verwendeten wir folgendes Bash-Script:
+\noindent Dafür verwendeten wir folgendes Bash-Script:
 
-\begin{minted}[frame=lines]{bash}
+\begin{minted}[linenos,frame=lines]{bash}
 #!/bin/bash
 #i: limit
 for i in {100000000..6000000000..100000000}
@@ -151,9 +179,10 @@ do
 done
 \end{minted}
 
-Wir implementierten folgende Algorithmen in C zur Zeitmessung:\\
-Sieb ohne die eins:\\\\
-\begin{minted}[frame=lines]{C}
+\noindent Wir implementierten folgende Algorithmen in C zur Zeitmessung:
+\textbf{Sieb ohne die eins:}
+\newpage
+\begin{minted}[linenos,frame=lines]{C}
 #include    <inttypes.h>
 #include    <stdbool.h>
 #include    <stdlib.h>
@@ -161,15 +190,12 @@ Sieb ohne die eins:\\\\
 #include    <sys/time.h>
 #include    <stdio.h>
 
-
 int main( void ) {
     struct timeval  start, end;
     gettimeofday(&start, NULL);
     
     bool* prime = (bool*)malloc(sizeof(bool) * (LIMIT-1));
     if( prime == NULL ) return 1;
-
-
     memset(prime, true, LIMIT-1);
 
     for(uint64_t i = 2; i*i <= LIMIT; i++) {
@@ -178,17 +204,16 @@ int main( void ) {
             for(uint64_t j = i*i -2; j <= LIMIT; j += i) {
                 prime[j] = false;
             }
-        }
 	}
+    }
 
 
     gettimeofday(&end, NULL);
     
     // Count primes
     uint32_t    nPrimes  = 0;
-    for( uint32_t i = 0;  i < LIMIT-1; i++) {
+    for( uint32_t i = 0;  i < LIMIT-1; i++)
         if( prime[i] ) nPrimes++;
-    }   
     
     printf("%.10f,%" PRIu32 "\n", 
 	 end.tv_sec + end.tv_usec/1e6 - start.tv_sec - start.tv_usec/1e6, 
@@ -198,8 +223,9 @@ int main( void ) {
 }
 \end{minted}
 
-Sieb ohne die eins und geraden Zahlen:\\\\
-\begin{minted}[frame=lines]{C}
+\newpage
+\noindent \textbf{Sieb ohne die eins und geraden Zahlen:}\\\\
+\begin{minted}[linenos,frame=lines]{C}
 #include    <inttypes.h>
 #include    <stdbool.h>
 #include    <stdlib.h>
@@ -208,49 +234,40 @@ Sieb ohne die eins und geraden Zahlen:\\\\
 #include    <stdio.h>
 #include    <math.h>
 
-
 int main( void ) {
     struct timeval  start, end;
     gettimeofday(&start, NULL);
 
-    uint32_t	primeLen = ceil(LIMIT / 2) - 1;
-    bool* 		prime 	 = (bool*)malloc(sizeof(bool) * primeLen);
+    uint32_t primeLen = ceil(LIMIT / 2) - 1;
+    bool*    prime    = (bool*)malloc(sizeof(bool) * primeLen);
     if( prime == NULL ) return 1;
-
-    memset(prime, true, primeLen);
-
+	memset(prime, true, primeLen);
 
     for(uint64_t i = 0, n = 3;  n*n <= LIMIT;  i++, n += 2) {
         if(prime[i]) {
-
-
-            for(uint64_t m = n*n;  m <= LIMIT;  m += 2*n) {
-				prime[ (m-3) / 2 ] = false;
-            }
+            for(uint64_t m = n*n;  m <= LIMIT;  m += 2*n)
+			    prime[ (m-3) / 2 ] = false;
         }
-	}
-
+    }
 
     gettimeofday(&end, NULL);
     
     // Count primes
     uint32_t    nPrimes  = 1;
-    for( uint32_t i = 0;  i < primeLen; i++) {
+    for( uint32_t i = 0;  i < primeLen; i++)
         if( prime[i] ) nPrimes++;
-    }   
     
     printf("%.10f,%" PRIu32 "\n", 
      end.tv_sec + end.tv_usec/1e6 - start.tv_sec - start.tv_usec/1e6, 
       nPrimes);
-    
-	return 0;
+      return 0;
 }
 \end{minted}
 
-Anmerkung:\\
-Es wird bewusst nicht die Zeit zum Ausgeben (printf()) mit einbezogen, da diese allgemein einen großen Anteil an Laufzeit beansprucht. Vergleicht man die folgenden Messwerte, so ergibt sich bei unserem optimierten Algorithmus für n = 1.000.000 eine Zeit von etwa 1389.054 Sekunden mit Ausgabe aller Primzahlen und etwa 8.0484920487 Sekunden ohne.
+\noindent \textit{[Anmerkung:]}\\
+Es wird bewusst nicht die Zeit zum Ausgeben (printf()) mit einbezogen, da diese allgemein einen großen Anteil an Laufzeit beansprucht. So ergibt sich bei unserem optimierten Algorithmus für n = 1.000.000 eine Zeit von etwa 1389.054 Sekunden mit Ausgabe aller Primzahlen und etwa 8.0484920487 Sekunden ohne.\\\\
 
-Die Messungen fanden in folgender Umgebung statt:\\\\
+\noindent Die Messungen fanden in folgender Umgebung statt:\\\\
 \begin{tabular}{|r|l|}
 \hline
 Operating System & \emph{Linux Mint 18.1 Cinnamon 64-Bit}\\
@@ -314,7 +331,7 @@ $limit$ & $t_g$[s] & $t_u$[s] & $\frac{t_g}{t_u}$\\
 \end{tabular}
 
 \begin{figure}
-\includegraphics[width=\textwidth]{comparison.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{comparison.png}
 \end{figure}
 
 
@@ -331,14 +348,10 @@ $limit$ & $t_g$[s] & $t_u$[s] & $\Delta t$ & $anzahl$ \\
 \hline
 \end{tabular}
 
+\section{Unser Algorithmus für Regressionen}
 
-%\newpage{}
-%\subsubsection{Programmablaufplan}
-%\begin{figure}[h]
-%\includegraphics[width=\textwidth]{sieve.jpg}
-%\end{figure}
-
-
-
+\begin{appendix}
+\section{Quellen}
+\end{appendix}
 
 \end{document}
