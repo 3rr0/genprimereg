@@ -394,7 +394,7 @@ RET = 0xff	//end of function
 \end{minted}
 \newpage
 
-\paragraph{Beispiel\\}
+\paragraph{Beispiel}
 \[(|sin(x) + cos(x)|)^{tan(6)}\]\\
 
 \noindent Dies sieht schließlich wie folgt aus:
@@ -416,46 +416,47 @@ Zuerst wird der Sinus von der Variable berechnet und im temporären Register A g
 
 \newpage
 \subsubsection{Definitionen}
-Aus der primereg.h:
+\paragraph{Headerdatei primereg.h}
 
 \begin{minted}[linenos,frame=lines]{C}
-#pragma     once
+#pragma once
 
-#define     N_FUNCTIONS			256		// Number of Functions per generation
-#define     N_PARENTS			32		// Number of parents to pick
-#define     N_NUMBERS			32		// Number of Numbers needed
-#define     N_PRINTDATA			256		// Number of loops till print of data
-#define     PERC_MUTATION		5		// Chance in percent of a mutation of a function
-#define		PERC_INHERIT		60		// Chance of child taking over data from parent B
-#define     FUNCTION_START		0x10	// Number of first function
-#define     FUNCTION_ONEARG		0x16	// Number of first function to take one argument
-#define     FUNCTION_END		0x1e	// Number of last function
-#define     MAX_RAND_DOUBLE		512		// Maximum double to be picked as random number
-#define		MAX_RAND_DOUBLE_DIG	5		// Digits of MAX_RANDOM_DOUBLE
-#define     PERC_ADD_NEW		60		// Percentage of adding a new function on creation
+#define N_FUNCTIONS         256  //Number of Functions per generation
+#define N_PARENTS           32   //Number of parents to pick
+#define N_NUMBERS           32   //Number of Numbers needed
+#define N_PRINTDATA         256  //Number of loops till print of data
+#define PERC_MUTATION       5    //Chance in percent of a mutation of a function
+#define PERC_INHERIT        60   //Chance of child taking over data from parent B
+#define FUNCTION_START      0x10 //Number of first function
+#define FUNCTION_ONEARG     0x16 //Number of first function to take one argument
+#define FUNCTION_END        0x1e //Number of last function
+#define MAX_RAND_DOUBLE     512  //Maximum double to be picked as random number
+#define MAX_RAND_DOUBLE_DIG 5    //Digits of MAX_RANDOM_DOUBLE
+#define PERC_ADD_NEW        60   //Percentage of adding a new function on creation
 
-#define     DEBUG                       // If defined, every generation results will be printed to stdout
-#ifdef      DEBUG
-#undef      N_PRINTDATA
-#define     N_PRINTDATA 1
-#endif  // DEBUG
+#define DEBUG                    //If defined, every generation results will be printed to stdout
+#ifdef  DEBUG
+#undef  N_PRINTDATA
+#define N_PRINTDATA 1
+#endif // DEBUG
 \end{minted}
 \newpage
+\paragraph{Erklärung}\hfill\\\\
+Diese stellen alle wichtigen Variablen des Quellcodes dar und können somit leicht verändert werden.\\ Hierbei Steht das N\_ für eine Nummer/Anzahl, das PERC\_ für ein Prozentwert und die anderen für vordefinierte Werte. \\
+Falls DEBUG definiert ist, dann werden alle Funktionen nach einem Loop ausgegeben. Sonst werden sie nur alle N\_PRINTDATA Durchläufe ausgegeben. \\
 
-Diese stellen alle wichtigen Variablen des Quellcodes dar und können somit leicht verändert werden. Hierbei Steht das N\_ für eine Nummer/Anzahl, das PERC\_ für ein Prozentwert und die anderen für vordefinierte Werte. Falls DEBUG definiert ist, dann werden alle Funktionen nach einem Loop ausgegeben. Sonst werden sie nur alle N\_PRINTDATA Durchläufe ausgegeben. 
-
-N\_FUNCTIONS gibt an, wie viele Elemente in unserer Population sein sollen.
-N\_PARENTS gibt an, wie viele der besten Elemente in der Population erhalten bleiben sollen und als die Grundgerüste der neuen Elemente gewertet werden sollen.
-N\_NUMBERS hält die Anzahl an Nummern, mit denen die der Elemente abgeglichen werden sollen. 
-N\_PRINTDATA gibt an, nach wie vielen Durchläufen des primären Loops die Daten ausgegeben werden sollen. 
-PERC\_MUTATION ist ein Prozentwert, der die Wahrscheinlichkeit einer Mutation des Elementes angibt. Dieser Wert sollte gering gehalten werden, da es sonst sehr schnell zu dem Fall kommen kann, dass die neuen Elemente keine Ähnlichkeit zu den N\_PARENTS Elementen mehr haben. 
-PERC\_INHERIT ist ein Prozentwert, der angibt, wie groß die Wahrscheinlichkeit ist, dass ein neues Element die Eigenschaft eines der besseren Elemente erbt. Dieser Wert sollte nicht zu groß werden, da die neuen Elemente sonst sehr schnell größer und komplexer werden, da sie dann nahezu alles ihrer Eltern übernehmen werden. 
-FUNCTION\_START gibt den Wert der ersten Funktion in unserem Syntax an.
-FUNCTION\_ONEARG gibt den Wert der ersten Funktion an, die nur ein Argument und nicht zwei nimmt. 
-FUNCTION\_END gibt den Wert der letzten Funktion in unserem Syntax an.
-MAX\_RAND\_DOUBLE stellt die maximale Größe eines durch Zufall generierten Zahlenwertes dar.
-MAX\_RAND\_DOUBLE\_DIG stellt die maximale Anzahl an Nachkommastellen der durch Zufall generierten Zahlenwerte dar. 
-PERC\_ADD\_NEW gibt in Prozent an, wie groß die Wahrscheinlichkeit ist, dass eine Funktion bei der Initialisierung eine weitere mathematische Funktion erhält. (Alle erhalten mindestens eine)
+\noindent N\_FUNCTIONS gibt an, wie viele Elemente in unserer Population sein sollen.\\
+N\_PARENTS gibt an, wie viele der besten Elemente in der Population erhalten bleiben sollen und als die Grundgerüste der neuen Elemente gewertet werden sollen.\\
+N\_NUMBERS hält die Anzahl an Nummern, mit denen die der Elemente abgeglichen werden sollen. \\
+N\_PRINTDATA gibt an, nach wie vielen Durchläufen des primären Loops die Daten ausgegeben werden sollen. \\
+PERC\_MUTATION ist ein Prozentwert, der die Wahrscheinlichkeit einer Mutation des Elementes angibt. Dieser Wert sollte gering gehalten werden, da es sonst sehr schnell zu dem Fall kommen kann, dass die neuen Elemente keine Ähnlichkeit zu den N\_PARENTS Elementen mehr haben. \\
+PERC\_INHERIT ist ein Prozentwert, der angibt, wie groß die Wahrscheinlichkeit ist, dass ein neues Element die Eigenschaft eines der besseren Elemente erbt. Dieser Wert sollte nicht zu groß werden, da die neuen Elemente sonst sehr schnell größer und komplexer werden, da sie dann nahezu alles ihrer Eltern übernehmen werden. \\
+FUNCTION\_START gibt den Wert der ersten Funktion in unserem Syntax an.\\
+FUNCTION\_ONEARG gibt den Wert der ersten Funktion an, die nur ein Argument und nicht zwei nimmt. \\
+FUNCTION\_END gibt den Wert der letzten Funktion in unserem Syntax an.\\
+MAX\_RAND\_DOUBLE stellt die maximale Größe eines durch Zufall generierten Zahlenwertes dar.\\
+MAX\_RAND\_DOUBLE\_DIG stellt die maximale Anzahl an Nachkommastellen der durch Zufall generierten Zahlenwerte dar. \\
+PERC\_ADD\_NEW gibt in Prozent an, wie groß die Wahrscheinlichkeit ist, dass eine Funktion bei der Initialisierung eine weitere mathematische Funktion erhält. (Alle erhalten mindestens eine)\\
 
 \subsubsection{Wahl des Funktionsparameter Datentyps}
 Wir haben uns dazu entschieden, den Datentypen double als den primären Datentypen für unsere Funktionen zu wählen, da dieser eine hohe Präzision gewährleistet, jeder x86 und x86-64 Prozessor mit diesem umgehen kann und er nur 8 Byte pro Variable aufnimmt. Zudem stellt die math Library, welche wir für die mathematischen Funktionen verwendet haben, Funktionen bereit, welche mit double arbeiten. 
@@ -484,16 +485,23 @@ Anschließend wird der Zufalls Generator erneut geseedet, da es in dem von uns g
 Die repopulate Funktion ist die Zeitaufwändigste Funktion und zugleich die komplexeste. Zuerst geht sie durch die Funktion der Eltern und zählt alle mathematischen Funktionen, die in diesen aufgerufen werden. Anschließend allocated sie genug Speicher, um einen Array von allen mathematischen Funktionen und deren Parametern zu erstellen, die bei den Eltern vorkommen. Nachdem sie diese mathematischen Funktionen der Eltern alle eingelesen hat, mutiert sie diese. Dies geschieht, indem die Funktion durch den Array geht und, sobald rand() mod 101 <= PERC\_MUTATION gilt, ersetzt sie entweder die mathematische Funktion oder einen der Parameter. Nachdem dieser Schritt getan ist, findet die Funktion ein verwendbares Erst-Element, dass keine Register als Parameter nimmt. Falls es keine mathematische Funktion findet, auf die dies zutrifft, verändert sie das erste Element des Arrays so, dass dieses keine abhängigen Parameter mehr nimmt. Zum Schluss geht es durch den Array von Funktionen und schaut, ob rand() mod 101 <= PER\_INHERIT gilt. Wenn dies der Fall ist, erbt das neue Element diese Mathematische Funktion von denen der Eltern, falls dies von den Parametern her zutrifft. Sie kann aber nicht vererbt werden, wenn die neue mathematische Funktion als Parameter Register A nimmt und Register B, aber Register A zu diesem Zeitpunkt leer ist. Dann wird diese Funktion übersprungen. Nach Durchgehen des Arrays wird, wie bei der Initialisierung, geschaut, ob in beiden Registern ein Wert ist und falls ja, dann wird erneut eine mathematische Funktion zufällig ausgewählt, die beide Parameter nimmt und nur ein Register zurückgibt. Zum Schluss wird noch der Schluss, also RET, an die Funktion angehangen und der allocatete Speicher wird freigegeben beziehungsweise der von dem neuen Element verkleinert. \\
 
 Diese Funktion wird nun für jedes Element der Population ausgeführt, bis die gesamte Population erneut gefüllt wurde. Dann beginnt der Loop wieder von vorne und die Fitness der neuen Funktionen wird erneut berechnet. \\
+\newpage 
 
-\subsection{Vor- und Nachteile eines genetischen Algorithmus gegenüber herkömmlicher Regressionsmethoden}
+\subsection{Vor-/Nachteile gegenüber herkömmlicher Regressionsmethoden}
 \subsubsection{Vorteile}
 Da unser Algorithmus lediglich die neu erstellten Funktionen mit denen der eingegebenen Funktionen abgleicht, ist er dazu in der Lage, eine Regression für jegliche Funktionstypen durchzuführen, sofern man ihm die richtigen Funktionswerte zum Vergleichen gibt. So kann der Algorithmus beispielsweise ohne Vorwissen über den möglichen Funktionstyp eine lineare oder quadratische oder exponentielle Funktion finden. In unserem Beispiel füllen wir den Array mit Primzahlen, um eine Funktion zu finden, welche diese beschreibt. Wir haben ihn aber auch mit den Zahlen einer quadratischen Funktion gestartet, welche er innerhalb von 3 Generationen, also 3 Aufrufen der evolve Funktion, erfolgreich fand. \\
 
 \subsubsection{Nachteile}
 Der Speicherverbrauch und die Laufzeit lassen sich nicht einschätzen, da diese beiden Werte abhängig sind von der Rückgabe der rand() Funktion. Aber es lässt sich sagen, dass der Algorithmus für höhere N\_FUNCTIONS oder höhere N\_PARENTS mehr Zeit in Anspruch nehmen wird. Des Weiteren wird der Speicherverbrauch für höhere PERC\_ADD\_NEW und PERC\_INHERIT ebenfalls schneller ansteigen. Da für höhere PERC\_INHERIT die Tendenz des Speicherverbrauchs schnell steigend ist, muss man mit diesem Wert vorsichtig umgehen, da es sonst sehr schnell zu einem Speicher-Overflow kommen kann. 
+\newpage
 
 \section{Ergebnisse}
+Um Folgen einer ausreichenden Güte zu erhalten, muss der Algorithmus über längere Zeit laufen. Im Rahmen der Arbeitsprojektwoche stand uns leider nur sehr wenig Zeit zur Verfügung. Trotzdem möchten wir einige Durchläufe dokumentieren.\\
+\newpage
 
+\section{Fazit}
+...Allerdings muss man stets Glück haben, eine passende Folge zu finden. Dies ist darin zu begründen, dass Funktionen per Zufall generiert werden. 
+\newpage
 
 \begin{appendix}
 \section{Quellen}
