@@ -350,12 +350,18 @@ $limit$ & $t_g$[s] & $t_u$[s] & $\Delta t$ & $anzahl$ \\
 
 \section{Genetischer Algorithmus für Regressionen}
 \subsection{Definition genetischer Algorithmus}
-Ein genetischer Algorithmus, oder auch Evolutionärer Algorithmus, ist eine klasse von Algorithmen, welche an die Funktionsweise der Natur angelehnt sind. Hierbei werden aus einer Datenmenge, die dafür bestimmt ist ein bestimmtes Problem zu lösen, die effizientesten ausgewählt und dafür verwendet die Anzahl an Datenmengen erneut zu erweitern mit  den effizientesten als Grundgerüst. Somit „lernt“ der Algorithmus aus seinen Fehlern, da nur die effizientesten Datenmengen „überleben“. 
+Ein genetischer Algorithmus, oder auch Evolutionärer Algorithmus, ist eine Klasse von Algorithmen, welche an die Funktionsweise der Natur angelehnt sind.\\
+Hierbei werden aus einer Datenmenge, die dafür bestimmt ist, ein bestimmtes Problem zu lösen, die effizientesten ausgewählt und dafür verwendet die Anzahl an Datenmengen erneut zu erweitern mit  den effizientesten als Grundgerüst.\\ Somit „lernt“ der Algorithmus aus seinen Fehlern, da nur die effizientesten Datenmengen „überleben“. 
 
 \subsection{Funktionsweise eines genetischen Algorithmus}
-Zu Beginn wird erst einmal eine Darstellungsweise für das zu lösende Problem aufgestellt. Anschließend wird eine Population generiert mit einer zufällig aufgebauten, oder bereits leicht geordneten, Struktur dieser Darstellungsweise. Anschließend muss jedes Element dieser Population von einer bewertenden Funktion, meist der Fitness-Funktion, die Fitness des Elements berechnen/bewerten. Diese Funktion ist notwendig da es sonst, wie in der Natur auch, keinen Grund gäbe sich zu verändern, wenn es nicht für das Überleben beziehungsweise das Wohlergehen notwendig ist. Die Fitness-Funktion wird basierend auf das Problem festgelegt und ist in ihrer Struktur meistens einfacher. So kann diese beispielsweise bei einem Algorithmus, welcher ein simuliertes Auto zu fahren lernen soll, einfach nur eine Division von der zurückgelegten Strecke durch die benötigte Zeit sein. 
-Nachdem jedes Element der Population bewertet wurde und jedem ein Fitness Wert zugeordnet worden ist müssen die Elemente die am besten abgeschnitten haben aussortiert werden. In unserem Beispiel von oben wären dies die Elemente, welche die höchste Fitness erreicht haben. Dies ist aber nicht zwingend. So kann es auch sein, dass eine kleinere Fitness besser, als eine größere ist. Das hängt von der Fitness-Funktion und deren Funktionsweise ab. 
-Diese besseren ausgewählten Elemente repräsentieren nun die Eltern. Diese werden nun aus der Population entfernt und außerhalb gespeichert. Anschließend werden alle Elemente der Population gelöscht. Nun wird für jeden Platz in der Population durch Zufall n, vorher festgelegte, Eltern aus den beiseitegelegten Elementen ausgewählt. Von diesen n Eltern werden nun, meist ebenfalls durch Zufall, Teile aus der Datenmenge entnommen und in das neue leere Element der Population getan. Anschließend kann es noch zu einer geringen Wahrscheinlichkeit, die meist als 1 bis 2 Prozent angelegt ist, zu einer Mutation kommen. Diese Mutation ist notwendig, damit sich die Population nicht auf den am Anfang durch Zufall erstellten Datenmengen festfährt, sondern immer was Neues hinzukommt und was Altes entfernt wird. Anschließend können die beiseitegelegten Elemente ebenfalls entfernt werden, da man für diese keinen Nutzen mehr hat. Nun kann der gesamte Prozess von vorne beginnen mit der neu erstellten Population, die auf der alten Population aufbaut und die statistisch betrachtet nun bessere Fitness Werte erzielen wird. 
+Zu Beginn wird erst einmal eine Darstellungsweise für das zu lösende Problem aufgestellt. \\
+Anschließend wird eine Population generiert mit einer zufällig aufgebauten, oder bereits leicht geordneten, Struktur dieser Darstellungsweise. Anschließend muss jedes Element dieser Population von einer bewertenden Funktion, meist der Fitness-Funktion, die Fitness des Elements berechnen/bewerten. \\
+Diese Funktion ist notwendig da es sonst, wie in der Natur auch, keinen Grund gäbe sich zu verändern, wenn es nicht für das Überleben beziehungsweise das Wohlergehen notwendig ist. Die Fitness-Funktion wird basierend auf das Problem festgelegt und ist in ihrer Struktur meistens einfacher. So kann diese beispielsweise bei einem Algorithmus, welcher ein simuliertes Auto zu fahren lernen soll, einfach nur eine Division von der zurückgelegten Strecke durch die benötigte Zeit sein. \\
+Nachdem jedes Element der Population bewertet wurde und jedem ein Fitness Wert zugeordnet worden ist müssen die Elemente die am besten abgeschnitten haben aussortiert werden. In unserem Beispiel von oben wären dies die Elemente, welche die höchste Fitness erreicht haben. Dies ist aber nicht zwingend. So kann es auch sein, dass eine kleinere Fitness besser, als eine größere ist. Das hängt von der Fitness-Funktion und deren Funktionsweise ab. \\
+Diese besseren ausgewählten Elemente repräsentieren nun die Eltern. Diese werden nun aus der Population entfernt und außerhalb gespeichert. Anschließend werden alle Elemente der Population gelöscht. \\
+Nun wird für jeden Platz in der Population durch Zufall n, vorher festgelegte, Eltern aus den beiseitegelegten Elementen ausgewählt. Von diesen n Eltern werden nun, meist ebenfalls durch Zufall, Teile aus der Datenmenge entnommen und in das neue leere Element der Population getan. \\
+Anschließend kann es noch zu einer geringen Wahrscheinlichkeit, die meist als 1 bis 2 Prozent angelegt ist, zu einer Mutation kommen. Diese Mutation ist notwendig, damit sich die Population nicht auf den am Anfang durch Zufall erstellten Datenmengen festfährt, sondern immer was Neues hinzukommt und was Altes entfernt wird. Anschließend können die beiseitegelegten Elemente ebenfalls entfernt werden, da man für diese keinen Nutzen mehr hat. \\
+Nun kann der gesamte Prozess von vorne beginnen mit der neu erstellten Population, die auf der alten Population aufbaut und die statistisch betrachtet nun bessere Fitness Werte erzielen wird. 
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Flowchart_Gen_Alg.png}
@@ -371,26 +377,26 @@ $Funktion$ $Parameter_a$ optional $Parameter_b$ $Solution$\\
 Dabei repräsentieren konstante Bytes mathematische Funktionen, um den Speicherverbrauch möglichst gering zu halten (im Vergleich zur Verwendung von Zeichenketten):
 
 \begin{minted}[linenos,frame=lines]{C}
-VAR = 0x00,	//Usage of Variable x
-SLA = 0x01,	//Temp. Solution A
-SLB = 0x02,	//Temp. Solution B
-NUM = 0x03,	//following is a double
-ADD = 0x10,	//double add(double a, double b)		-> a + b
-SUB = 0x11,	//double substract(double a, double b)	-> a - b
-MUL = 0x12,	//double multiply(double a, double b)	-> a * b
-DIV = 0x13,	//double divide(double a, double b)	-> a / b
-POW = 0x14,	//double power(double a, double b)	-> a ^ b
-LOG = 0x15,	//double logarithm(double a, double b)	-> log(a) / log(b)
-RND = 0x16,	//double round(double a)			-> (int64_t)(a + 0.5)
-ABS = 0x17,	//double absolute(double a)			-> +a
-SIN = 0x18,	//double sin(double a)			-> sin(a)
-COS = 0x19,	//double cos(double a)			-> cos(a)
-TAN = 0x1a,	//double tan(double a)			-> tan(a)
-ASIN = 0x1b,	//double arcsin(double a)			-> asin(a)
-ACOS = 0x1c,	//double arccos(double a)			-> acos(a)
-ATAN = 0x1d,	//double arctan(double a)			-> atan(a)
-EXP = 0x1e,	//double exponent(double a)			-> e ^ a
-RET = 0xff	//end of function
+VAR  = 0x00, //Usage of Variable x
+SLA  = 0x01, //Temp. Solution A
+SLB  = 0x02, //Temp. Solution B
+NUM  = 0x03, //following is a double
+ADD  = 0x10, //double add(double a, double b)       -> a + b
+SUB  = 0x11, //double substract(double a, double b) -> a - b
+MUL  = 0x12, //double multiply(double a, double b)  -> a * b
+DIV  = 0x13, //double divide(double a, double b)    -> a / b
+POW  = 0x14, //double power(double a, double b)     -> a ^ b
+LOG  = 0x15, //double logarithm(double a, double b) -> log(a) / log(b)
+RND  = 0x16, //double round(double a)               -> (int64_t)(a + 0.5)
+ABS  = 0x17, //double absolute(double a)            -> +a
+SIN  = 0x18, //double sin(double a)                 -> sin(a)
+COS  = 0x19, //double cos(double a)                 -> cos(a)
+TAN  = 0x1a, //double tan(double a)                 -> tan(a)
+ASIN = 0x1b, //double arcsin(double a)              -> asin(a)
+ACOS = 0x1c, //double arccos(double a)              -> acos(a)
+ATAN = 0x1d, //double arctan(double a)              -> atan(a)
+EXP  = 0x1e, //double exponent(double a)            -> e ^ a
+RET  = 0xff  //end of function
 \end{minted}
 \newpage
 
@@ -412,13 +418,19 @@ RET SLA
 \end{center}
 
 \noindent \\ Das würde folgendes bewirken:\\
-Zuerst wird der Sinus von der Variable berechnet und im temporären Register A gespeichert. Anschließend wird der Cosinus der unabhängigen Variable berechnet und im temporären Register B gespeichert. Die Werte dieser Register werden nun miteinander addiert und wieder im Register A gespeichert. Von dem Wert in Register A wird nun der Betrag genommen und wieder in Register A zurückgespeichert. Nun wird der Tangens der Dezimalzahl 6.0 berechnet und in Register B gespeichert. Danach wird der Wert von Register A hoch den Wert von Register B gerechnet und dies im Register A gespeichert. Zum Schluss wird Register A als das mit dem Ergebnis anerkannt und die Funktion wird beendet. 
+Zuerst wird der Sinus von der Variable berechnet und im temporären Register A gespeichert.\\
+Anschließend wird der Cosinus der unabhängigen Variable berechnet und im temporären Register B gespeichert.\\
+Die Werte dieser Register werden nun miteinander addiert und wieder im Register A gespeichert. \\
+Von dem Wert in Register A wird nun der Betrag genommen und wieder in Register A zurückgespeichert. \\
+Nun wird der Tangens der Dezimalzahl 6.0 berechnet und in Register B gespeichert. \\
+Danach wird der Wert von Register A hoch den Wert von Register B gerechnet und dies im Register A gespeichert. \\
+Zum Schluss wird Register A als das mit dem Ergebnis anerkannt und die Funktion wird beendet. 
 
 \newpage
 \subsubsection{Definitionen}
 \paragraph{Headerdatei primereg.h}
 
-\begin{minted}[linenos,frame=lines]{C}
+\begin{minted}[linenos,frame=lines,breaklines=true]{C}
 #pragma once
 
 #define N_FUNCTIONS         256  //Number of Functions per generation
@@ -441,7 +453,7 @@ Zuerst wird der Sinus von der Variable berechnet und im temporären Register A g
 #endif // DEBUG
 \end{minted}
 \newpage
-\paragraph{Erklärung}\hfill\\\\
+\paragraph{Erläuterung}\hfill\\\\
 Diese stellen alle wichtigen Variablen des Quellcodes dar und können somit leicht verändert werden.\\ Hierbei Steht das N\_ für eine Nummer/Anzahl, das PERC\_ für ein Prozentwert und die anderen für vordefinierte Werte. \\
 Falls DEBUG definiert ist, dann werden alle Funktionen nach einem Loop ausgegeben. Sonst werden sie nur alle N\_PRINTDATA Durchläufe ausgegeben. \\
 
@@ -459,40 +471,49 @@ MAX\_RAND\_DOUBLE\_DIG stellt die maximale Anzahl an Nachkommastellen der durch 
 PERC\_ADD\_NEW gibt in Prozent an, wie groß die Wahrscheinlichkeit ist, dass eine Funktion bei der Initialisierung eine weitere mathematische Funktion erhält. (Alle erhalten mindestens eine)\\
 
 \subsubsection{Wahl des Funktionsparameter Datentyps}
-Wir haben uns dazu entschieden, den Datentypen double als den primären Datentypen für unsere Funktionen zu wählen, da dieser eine hohe Präzision gewährleistet, jeder x86 und x86-64 Prozessor mit diesem umgehen kann und er nur 8 Byte pro Variable aufnimmt. Zudem stellt die math Library, welche wir für die mathematischen Funktionen verwendet haben, Funktionen bereit, welche mit double arbeiten. 
+Wir haben uns dazu entschieden, den Datentypen double als den primären Datentypen für unsere Funktionen zu wählen, da dieser eine hohe Präzision gewährleistet, jeder x86 und x86-64 Prozessor mit diesem umgehen kann und er nur 8 Byte pro Variable aufnimmt. Zudem stellt die Mathematik-Bibliothek, welche wir für die mathematischen Funktionen verwendet haben, Funktionen bereit, welche mit double arbeiten. 
 
 \subsubsection{Funktionsweise}
-Unser Algorithmus startet damit, den Speicher für die Population zu allocaten. Anschließend allocated er den Speicher für die Primzahlen, deren Erzeugung noch beschrieben wird. Danach wird der Zufallsgenerator mit der vergangenen Zeit seit dem 1. Januar 1970 in Millisekunden geseedet, damit wir möglichst zufällige Ergebnisse erhalten. \\
+\paragraph{Programmablaufplan}
+\begin{figure}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Flowchart_Unser_Alg.png}
+\end{figure}
+\newpage
 
-Nun werden die einzelnen Elemente der Population Initialisiert. Hierfür wird die erste mathematische Funktion durch Zufall gewählt und deren Parameter ebenfalls als entweder VAR oder NUM. Anschließend wird geschaut, ob rand() mod 101 <= PERC\_ADD\_NEW gilt (Mit rand() mod 101 erhält man einen Zufallswert zwischen 0 und 100).  Wenn dies gilt, dann wird eine weitere zufällige mathematische Funktion hinzugefügt. Falls nicht, dann wird geschaut, ob beide Register einen Wert beinhalten. Falls ja, dann wird noch eine zufällige Funktion, die zwei Argumente nimmt, gewählt und die nimmt dann als Parameter die beiden Register. Somit ist gewährleistet, dass kein Wert verloren geht und man nur noch ein volles Register am Ende hat, welches dann als das mit dem Ergebnis gewählt wird. \\
+\paragraph{Erläuterung}\hfill\\\\
+Unser Algorithmus startet damit, den Speicher für die Population zu allokieren. Anschließend allokiert er den Speicher für die Primzahlen, deren Erzeugung noch beschrieben wird. Danach wird der Zufallsgenerator mit der vergangenen Zeit seit dem 1. Januar 1970 in Millisekunden geseedet, damit wir möglichst zufällige Ergebnisse erhalten. \\
 
-Falls als Parameter NUM gewählt wird, so heißt das, dass eine zufällige Fließkommazahl generiert werden muss. Diese wird wie folgt erzeugt:
-Zuerst wird ein HighDouble Wert erzeugt. Dieser liegt innerhalb der Grenzen 0 und MAX\_RAND\_DOUBLE. Anschließend wird ein LowDouble Wert erzeugt, welcher in den Grenzen 0 und 10\^MAX\_RAND\_DOUBLE\_DIG liegt. Dieser wird nun solange in einem Loop durch 10 geteilt, bis er kleiner als 1 ist. Der Generierte Wert setzt sich dann zusammen aus dem HighDouble und dem LowDouble, die miteinander addiert werden. Zum Schluss wird noch geschaut, ob der Wert negativ sein soll, was durch ein Aufruf der rand() Funktion geschieht. 
-Als Beispiel:
-MAX\_RAND\_DOUBLE 512
-MAX\_RAND\_DOUBLE\_DIG 5
-So werden als Zufallszahlen Zahlen zwischen -511.9999 und 511.9999 erzeugt werden. \\
+\noindent Nun werden die einzelnen Elemente der Population initialisiert. Hierfür wird die erste mathematische Funktion durch Zufall gewählt und deren Parameter ebenfalls als entweder VAR oder NUM. Anschließend wird geschaut, ob rand() mod 101 <= PERC\_ADD\_NEW gilt (Mit rand() mod 101 erhält man einen Zufallswert zwischen 0 und 100).  Wenn dies gilt, dann wird eine weitere zufällige mathematische Funktion hinzugefügt. Falls nicht, dann wird geschaut, ob beide Register einen Wert beinhalten. Falls ja, dann wird noch eine zufällige Funktion, die zwei Argumente nimmt, gewählt und die nimmt dann als Parameter die beiden Register. Somit ist gewährleistet, dass kein Wert verloren geht und man nur noch ein volles Register am Ende hat, welches dann als das mit dem Ergebnis gewählt wird. \\
 
-Nachdem die gesamte Population mit funktionstüchtigen Funktionen gefüllt worden ist, geht es in den Main-Loop. Hier wird zum einen die evolve Funktion aufgerufen, welche im Grunde den genetischen Algorithmus beinhaltet, und dann wird noch eine Zählervariable gehalten, welche angibt, wann die Daten alle ausgegeben werden sollen, und eine, die die derzeitige Generation mit sich trägt.\\
+\noindent Falls als Parameter NUM gewählt wird, so heißt das, dass eine zufällige Fließkommazahl generiert werden muss. Diese wird wie folgt erzeugt:\\
+\noindent Zuerst wird ein HighDouble Wert erzeugt. Dieser liegt innerhalb der Grenzen 0 und MAX\_RAND\_DOUBLE. Anschließend wird ein LowDouble Wert erzeugt, welcher in den Grenzen 0 und 10\^MAX\_RAND\_DOUBLE\_DIG liegt. Dieser wird nun solange in einer Schleife durch 10 geteilt, bis er kleiner als 1 ist. Der Generierte Wert setzt sich dann zusammen aus dem HighDouble und dem LowDouble, die miteinander addiert werden. Zum Schluss wird noch geschaut, ob der Wert negativ sein soll, was durch ein Aufruf der rand() Funktion geschieht. \\
 
-In der evolve Funktion wird zuerst die Fitness der einzelnen Elemente der Funktion berechnet. Die Fitnessfunktion berechnet erst den Funktionswert des Elements für einen gegebenen x-Wert und anschließend seine Abweichung von der tatsächlichen Primzahl und quadriert diesen Wert. Diese Ergebnisse werden dann von x = 0 bis x = N\_NUMBERS - 1 berechnet und aufaddiert. Der dann erhaltene Wert repräsentiert die Fitness. Umso geringer dieser Wert ist, desto besser ist die Funktion. Wichtig ist, dass wir mathematische Fehler als vollständigen Eliminierungsfaktor ansehen. So werden Funktionen, die beispielsweise versuchen durch 0 zu teilen, mit dem Fitnesswert -1.0 versehen, was sie als nicht gültig kennzeichnet. \\
+\noindent Als Beispiel:\\
+MAX\_RAND\_DOUBLE 512\\
+MAX\_RAND\_DOUBLE\_DIG 5\\
+So werden als Zufallszahlen Zahlen zwischen -511.9999 und 511.9999 erzeugt. \\
 
-Sobald die Fitness für jede Funktion berechnet wurde, werden nun die N\_PARENTS besten Elemente ausgewählt. Dies wird gemacht mit dem Bubblesort Algorithmus, welcher dafür sorgt, dass die besten N\_PARENTS Elemente die ersten der Population sein werden. 
-Wir haben uns dafür entschieden, die N\_PARENTS besten Elemente nicht für die neue Population zu verwerfen, da wir der Ansicht waren, dass es besser wäre, diese zu behalten. Somit werden in jedem Durchlauf lediglich N\_FUNCTIONS – N\_PARENTS Elemente der Population als neue Elemente aus den N\_PARENTS Elementen generiert. Dies hat ebenfalls zur Folge, dass eine Funktion, die die Fitness 0.0 hat und somit perfekt ist, nicht durch Zufall verändert wird, zum Schlechteren und dann rausgeworfen wird. Dadurch ist gewährleistet, dass die N\_PARENTS ersten Elemente der Population immer gute Werte erzielen werden. 
+\noindent Nachdem die gesamte Population mit validen Funktionen gefüllt worden ist, geht es in die Haupt-Schleife (\emph{Main-Loop}). Hier wird zum einen die evolve Funktion aufgerufen, welche im Grunde den genetischen Algorithmus beinhaltet, und dann wird noch eine Zählervariable gehalten, welche angibt, wann die Daten alle ausgegeben werden sollen, und eine, die die derzeitige Generation mit sich trägt.\\
 
-Anschließend wird der Zufalls Generator erneut geseedet, da es in dem von uns gewählten eine gewisse Wiederholung nach ungefähr 10\^5 Zahlen gibt, die wir verhindern möchten. Dann kommt es zur Neubildung der Population. Hierfür werden immer zwei der N\_PARENTS gewählt. Es kann auch vorkommen, dass diese beiden gleich sind. Das wirkt sich aber nicht negativ auf den Algorithmus aus und kann somit enthalten bleiben. 
+\noindent In der evolve Funktion wird zuerst die Güte (\emph{Fitness}) der einzelnen Elemente der Funktion berechnet. Dabei wird diese anhand der Summe der Fehlerquadrate ermittelt: Diese Fitnessfunktion berechnet erst den Funktionswert des Elements für einen gegebenen x-Wert und anschließend seine Abweichung von der tatsächlichen Primzahl und quadriert diesen Wert. Diese Ergebnisse werden dann von x = 0 bis x = N\_NUMBERS - 1 berechnet und aufaddiert. Der dann erhaltene Wert repräsentiert die Fitness. Umso geringer dieser Wert ist, desto besser ist die Funktion.\\ \noindent Wichtig ist, dass wir mathematische Fehler als vollständigen Eliminierungsfaktor ansehen. So werden Funktionen, die beispielsweise versuchen durch 0 zu teilen, mit dem Fitnesswert -1.0 versehen, was sie als nicht gültig kennzeichnet. \\
 
-Die repopulate Funktion ist die Zeitaufwändigste Funktion und zugleich die komplexeste. Zuerst geht sie durch die Funktion der Eltern und zählt alle mathematischen Funktionen, die in diesen aufgerufen werden. Anschließend allocated sie genug Speicher, um einen Array von allen mathematischen Funktionen und deren Parametern zu erstellen, die bei den Eltern vorkommen. Nachdem sie diese mathematischen Funktionen der Eltern alle eingelesen hat, mutiert sie diese. Dies geschieht, indem die Funktion durch den Array geht und, sobald rand() mod 101 <= PERC\_MUTATION gilt, ersetzt sie entweder die mathematische Funktion oder einen der Parameter. Nachdem dieser Schritt getan ist, findet die Funktion ein verwendbares Erst-Element, dass keine Register als Parameter nimmt. Falls es keine mathematische Funktion findet, auf die dies zutrifft, verändert sie das erste Element des Arrays so, dass dieses keine abhängigen Parameter mehr nimmt. Zum Schluss geht es durch den Array von Funktionen und schaut, ob rand() mod 101 <= PER\_INHERIT gilt. Wenn dies der Fall ist, erbt das neue Element diese Mathematische Funktion von denen der Eltern, falls dies von den Parametern her zutrifft. Sie kann aber nicht vererbt werden, wenn die neue mathematische Funktion als Parameter Register A nimmt und Register B, aber Register A zu diesem Zeitpunkt leer ist. Dann wird diese Funktion übersprungen. Nach Durchgehen des Arrays wird, wie bei der Initialisierung, geschaut, ob in beiden Registern ein Wert ist und falls ja, dann wird erneut eine mathematische Funktion zufällig ausgewählt, die beide Parameter nimmt und nur ein Register zurückgibt. Zum Schluss wird noch der Schluss, also RET, an die Funktion angehangen und der allocatete Speicher wird freigegeben beziehungsweise der von dem neuen Element verkleinert. \\
+\noindent Sobald die Fitness für jede Funktion berechnet wurde, werden nun die \\N\_PARENTS besten Elemente ausgewählt. Dies erfolgt mit Hilfe des Bubblesort Algorithmus, welcher dafür sorgt, dass die besten N\_PARENTS Elemente die ersten der Population sein werden. 
+Wir haben uns dafür entschieden, die N\_PARENTS besten Elemente nicht für die neue Population zu verwerfen, da wir der Ansicht waren, dass es besser wäre, diese zu behalten. Somit werden in jedem Durchlauf lediglich N\_FUNCTIONS – N\_PARENTS Elemente der Population als neue Elemente aus den N\_PARENTS Elementen generiert. Dies hat ebenfalls zur Folge, dass eine Funktion, die die Fitness 0 hat und somit perfekt ist, nicht durch Zufall verändert wird, zum Schlechteren und dann rausgeworfen wird. Dadurch ist gewährleistet, dass die N\_PARENTS ersten Elemente der Population immer gute Werte erzielen werden. 
 
-Diese Funktion wird nun für jedes Element der Population ausgeführt, bis die gesamte Population erneut gefüllt wurde. Dann beginnt der Loop wieder von vorne und die Fitness der neuen Funktionen wird erneut berechnet. \\
+\noindent Anschließend wird der Zufallsgenerator erneut geseedet, da es in dem von uns gewählten eine gewisse Wiederholung nach ungefähr 10\^5 Zahlen gibt, die wir verhindern möchten (es werden keine \emph{true random numbers} erzeugt). Dann kommt es zur Neubildung der Population. Hierfür werden immer zwei der N\_PARENTS gewählt. Es kann auch vorkommen, dass diese beiden gleich sind. Das wirkt sich aber nicht negativ auf den Algorithmus aus und kann somit enthalten bleiben. 
+
+\noindent Die \emph{repopulate}-Funktion ist die Zeitaufwändigste Funktion und zugleich die komplexeste. Zuerst geht sie durch die Funktion der Eltern und zählt alle mathematischen Funktionen, die in diesen aufgerufen werden. Anschließend allokiert sie genug Speicher, um einen Array von allen mathematischen Funktionen und deren Parametern zu erstellen, die bei den Eltern vorkommen. Nachdem sie diese mathematischen Funktionen der Eltern alle eingelesen hat, mutiert sie diese. Dies geschieht, indem die Funktion durch den Array geht und, sobald rand() mod 101 <= PERC\_MUTATION gilt, ersetzt sie entweder die mathematische Funktion oder einen der Parameter. Nachdem dieser Schritt getan ist, findet die Funktion ein verwendbares Erst-Element, dass keine Register als Parameter nimmt. Falls es keine mathematische Funktion findet, auf die dies zutrifft, verändert sie das erste Element des Arrays so, dass dieses keine abhängigen Parameter mehr nimmt. Zum Schluss geht es durch den Array von Funktionen und schaut, ob rand() mod 101 <= PER\_INHERIT gilt. Wenn dies der Fall ist, erbt das neue Element diese Mathematische Funktion von denen der Eltern, falls dies von den Parametern her zutrifft. Sie kann aber nicht vererbt werden, wenn die neue mathematische Funktion als Parameter Register A nimmt und Register B, aber Register A zu diesem Zeitpunkt leer ist. Dann wird diese Funktion übersprungen. Nach Durchgehen des Arrays wird, wie bei der Initialisierung, geschaut, ob in beiden Registern ein Wert ist und falls ja, dann wird erneut eine mathematische Funktion zufällig ausgewählt, die beide Parameter nimmt und nur ein Register zurückgibt. Zum Schluss wird noch der Schluss, also RET, an die Funktion angehangen und der reservierte Speicher wird freigegeben beziehungsweise der von dem neuen Element verkleinert. \\
+
+\noindent Diese Funktion wird nun für jedes Element der Population ausgeführt, bis die gesamte Population erneut gefüllt wurde. Dann beginnt die Schleife wieder von vorne und die Fitness der neuen Funktionen wird erneut berechnet. \\
 \newpage 
 
-\subsection{Vor-/Nachteile gegenüber herkömmlicher Regressionsmethoden}
+\subsection{Vor-/Nachteile gegenüber herkömmlichen Regressionsmethoden}
 \subsubsection{Vorteile}
-Da unser Algorithmus lediglich die neu erstellten Funktionen mit denen der eingegebenen Funktionen abgleicht, ist er dazu in der Lage, eine Regression für jegliche Funktionstypen durchzuführen, sofern man ihm die richtigen Funktionswerte zum Vergleichen gibt. So kann der Algorithmus beispielsweise ohne Vorwissen über den möglichen Funktionstyp eine lineare oder quadratische oder exponentielle Funktion finden. In unserem Beispiel füllen wir den Array mit Primzahlen, um eine Funktion zu finden, welche diese beschreibt. Wir haben ihn aber auch mit den Zahlen einer quadratischen Funktion gestartet, welche er innerhalb von 3 Generationen, also 3 Aufrufen der evolve Funktion, erfolgreich fand. \\
+Da unser Algorithmus lediglich die neu erstellten Funktionen mit denen der eingegebenen Funktionen abgleicht, ist er dazu in der Lage, eine Regression für jegliche Funktionstypen durchzuführen, sofern man ihm die richtigen Funktionswerte zum Vergleichen gibt. So kann der Algorithmus beispielsweise ohne Vorwissen über den möglichen Funktionstyp eine lineare oder quadratische oder exponentielle Funktion finden. In unserem Beispiel füllen wir den Array mit Primzahlen, um eine Funktion zu finden, welche diese beschreibt. Wir haben ihn aber auch mit den Zahlen einer quadratischen Funktion gestartet, welche er innerhalb von 3 Generationen, also 3 Aufrufen der \emph{evolve}-Funktion, erfolgreich fand. \\
 
 \subsubsection{Nachteile}
-Der Speicherverbrauch und die Laufzeit lassen sich nicht einschätzen, da diese beiden Werte abhängig sind von der Rückgabe der rand() Funktion. Aber es lässt sich sagen, dass der Algorithmus für höhere N\_FUNCTIONS oder höhere N\_PARENTS mehr Zeit in Anspruch nehmen wird. Des Weiteren wird der Speicherverbrauch für höhere PERC\_ADD\_NEW und PERC\_INHERIT ebenfalls schneller ansteigen. Da für höhere PERC\_INHERIT die Tendenz des Speicherverbrauchs schnell steigend ist, muss man mit diesem Wert vorsichtig umgehen, da es sonst sehr schnell zu einem Speicher-Overflow kommen kann. 
+Der Speicherverbrauch und die Laufzeit lassen sich nicht einschätzen, da diese beiden Werte abhängig sind von der Rückgabe der rand() Funktion. Aber es lässt sich sagen, dass der Algorithmus für höhere N\_FUNCTIONS oder höhere N\_PARENTS mehr Zeit in Anspruch nehmen wird. Des Weiteren wird der Speicherverbrauch für höhere PERC\_ADD\_NEW und PERC\_INHERIT ebenfalls schneller ansteigen. Da für höhere PERC\_INHERIT die Tendenz des Speicherverbrauchs schnell steigend ist, muss man mit diesem Wert vorsichtig umgehen, da es sonst sehr schnell zu einem Speicherüberlauf kommen kann.\\
+Auch liefert der Algorithmus keine Folge eines vorgegebenen Grades (wie etwa bei einer linearen, quadratischen, ... Regression), was für manche Sachverhalte unerwünscht sein kann.
 \newpage
 
 \section{Ergebnisse}
@@ -500,11 +521,31 @@ Um Folgen einer ausreichenden Güte zu erhalten, muss der Algorithmus über län
 \newpage
 
 \section{Fazit}
-...Allerdings muss man stets Glück haben, eine passende Folge zu finden. Dies ist darin zu begründen, dass Funktionen per Zufall generiert werden. 
+Unser Algorithmus ist flexibel. Er versucht, alle ihm gegebene Datenpunkte möglichst gut zu approximieren, unabhängig davon, welchem Wachstum diese entstammen.\\
+\noindent Allerdings muss man stets Glück haben, eine passende Folge zu finden. Dies ist darin zu begründen, dass diese per Zufall generiert werden. Somit ist das Verhalten des Algorithmus nicht vorhersehbar, weswegen konventienelle Regressionsmethoden schneller zu einem Ergebnis kommen.\\
+\noindent Aber vielleicht hilft genau dieses Prinzip genetischer Algorithmen, Folgen für bisher unbekannte Wachstumsklassen, wie etwa Primzahlen, zu finden. Unsere bisherigen Messungen zeigen, dass unser Programm während der Laufzeit immer bessere Funktionen generiert. Somit könnte der Algorithmus irgendwann eine Folge für Primzahlen finden. Hierfür benötigen wir aber mehr Zeit und Rechenleistung.\\
+\noindent Zusammenfassend konnte das volle Potential des Algorithmus im Rahmen der Arbeitsprojektwoche nicht völlig ausgeschöpft werden. Daher können wir zum aktuellen Zeitpunkt keine endgültige Aussage über die Eignung eines genetischen Algorithmus zur Regression treffen. Deshalb werden wir den Algorithmus weitergehend ausführen und sind auf dessen Ergebnisse gespannt.
 \newpage
 
 \begin{appendix}
 \section{Quellen}
+- https://en.wikipedia.org/wiki/Formula\_for\_primes\\
+- https://de.wikipedia.org/wiki/Sieb\_des\_Eratosthenes\\
+- https://de.wikipedia.org/wiki/Primzahl\\
+- https://www.youtube.com/watch?v=ITLjfRiAc10\\
+- http://www.iti.fh-flensburg.de/lang/algorithmen/asymp.htm\\
+- http://www.programming-algorithms.net/article/41297/Sieve-of-Eratosthenes\\
+- https://de.wikipedia.org/wiki/Miller-Rabin-Test\\
+- http://www-cs-students.stanford.edu/\textasciitilde jl/Essays/ga.html\\
+- https://en.wikipedia.org/wiki/RSA\_numbers\#RSA-768\\
+- https://en.wikipedia.org/wiki/RSA\_Factoring\_Challenge\\
+- https://de.wikipedia.org/wiki/Eulersche\_Phi-Funktion\\
+- https://www.youtube.com/watch?v=oXlY-yx1oIw\\
+- https://en.wikipedia.org/wiki/Sieve\_of\_Atkin\\
+- https://en.wikipedia.org/wiki/Largest\_known\_prime\_number\\
+- https://en.wikipedia.org/wiki/Divergence\_of\_the\_sum\_of\_the\_reciprocals\_of\_the\_primes\\
+- https://de.wikipedia.org/wiki/Evolution\%C3\%A4rer\_Algorithmus\\
+- THE NATURE OF CODE by Daniel Shiffman\\
 \end{appendix}
 
 \end{document}
